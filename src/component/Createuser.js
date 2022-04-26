@@ -2,6 +2,7 @@ import axios from 'axios';
 import {useFormik } from 'formik';
 import React from 'react'
 
+
 function Createuser() {
     const formik = useFormik({
         initialValues: {
@@ -14,6 +15,7 @@ function Createuser() {
             try {
                 await axios.post("https://6193477cd3ae6d0017da8485.mockapi.io/users", values)
                 alert("Submited Successfully")
+                
             } catch (error) {
                 console.log(error);
             }
@@ -21,6 +23,7 @@ function Createuser() {
 
     });
 
+   
     
 
     return (

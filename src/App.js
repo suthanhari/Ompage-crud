@@ -1,8 +1,15 @@
 import './App.css';
-import Createuser from './component/Createuser';
-import Userlist from './component/Userlist';
+import Edituser from './component/Edituser';
+import Home from './component/Home';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
-// import Edituser from './component/Edituser';
+
+
+
 
 
 
@@ -13,25 +20,15 @@ function App() {
 
   return (
     <>
-     
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-3'>
+    <BrowserRouter>
+      <div className='container'>
+        <Home />
 
-              <Createuser />
-
-
-            </div>
-
-            <div className='col-md-9'>
-              <Userlist/>
-            </div>
-              
-          </div>
-
-          
-        </div>
-      
+        <Routes>
+          <Route path='/edit-user/:id' element={<Edituser/>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
     </>
   );
 }

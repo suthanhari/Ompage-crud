@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Userlist() {
@@ -9,9 +9,12 @@ function Userlist() {
     const [user, setUser] = useState([]);
 
 
+
     useEffect(() => {
         fetchUsers()
+
     }, [])
+
 
 
 
@@ -20,6 +23,7 @@ function Userlist() {
             try {
                 let userData = await axios.get("https://6193477cd3ae6d0017da8485.mockapi.io/users");
                 setUser(userData.data);
+
             } catch (error) {
                 console.log(error);
             }
@@ -27,6 +31,22 @@ function Userlist() {
         fetch()
 
     }
+
+    const handleDelete = async (id, e) => {
+        try {
+            await axios.delete(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${id}`)
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            // e.preventDefault();
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+   
 
     return (
         <>
@@ -53,19 +73,58 @@ function Userlist() {
                                     <td>{data.slug}</td>
                                     <td>{data.parent}</td>
                                     <td>
+                                        <Link to={`/edit-user/${data.id}`}>
+                                            <button className='btn btn-sm btn-primary me-1'>Edit</button>
+                                        </Link>
 
-                                        <button className='btn btn-sm btn-primary me-1'>Edit</button>
+
+                                        {/* <button className='btn btn-sm btn-danger' onClick={handleShow}>Delete</button> */}
 
 
-                                        <button className='btn btn-sm btn-danger'>Delete</button>
+
+                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            Delete
+                                        </button>
+
+
+                                        {/* <dialog open={show} class="modal" id="modal">
+                                            <h2>Are You Sure?</h2>
+                                            <p>Are you sure want to delete this record.</p>
+                                            <button className='btn  btn-danger' onClick={() => handleDelete(data.id)}>Delete</button>
+                                            <button class="btn btn-danger" onClick={handleCancel}>close modal</button>
+                                        </dialog> */}
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Are You Sure?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure want to delete this Record?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" onClick={() => handleDelete(data.id)}>Delete</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             )
                         })
+
+
+
+
+
                     }
 
                 </tbody>
             </table>
+
 
 
         </>
