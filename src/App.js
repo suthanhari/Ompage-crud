@@ -13,22 +13,32 @@ import {
 
 
 
-
 function App() {
 
 
 
   return (
     <>
-    <BrowserRouter>
-      <div className='container'>
-        <Home />
+      <BrowserRouter>
+        <div className='container'>
+          <Routes>
+            <Route path='/' element={<Home />} />
 
-        <Routes>
-          <Route path='/edit-user/:id' element={<Edituser/>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+          </Routes>
+        </div>
+
+        <div className='container'>
+          <div className='row mt-2 d-flex justify-content-center'>
+            <div className='col-md-6'>
+
+              <Routes>
+                <Route path='/edit-user/:id' element={<Edituser />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+
+      </BrowserRouter>
     </>
   );
 }

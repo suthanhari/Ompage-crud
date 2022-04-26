@@ -35,8 +35,7 @@ function Userlist() {
     const handleDelete = async (id, e) => {
         try {
             await axios.delete(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${id}`)
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
+            
             // e.preventDefault();
 
 
