@@ -19,6 +19,7 @@ function Edituser() {
             try {
                 await axios.put(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`, values)
                 navigate('/');
+               
                 
             } catch (error) {
                 console.log(error);
@@ -34,9 +35,9 @@ function Edituser() {
     useEffect(() => {
         fetchUsers()
     }, [])
-
-
-
+    
+    
+    
     const fetchUsers = () => {
         const fetch = async () => {
             try {
