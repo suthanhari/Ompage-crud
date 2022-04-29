@@ -18,21 +18,14 @@ function Createuser() {
             parent: "",
             description: ""
         },
-<<<<<<< HEAD
-        onSubmit: async (values) => {
-=======
-        onSubmit: async (values,e) => {
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
-            try {
 
+        onSubmit: async (values) => {
+
+
+
+            try {
                 await axios.post("https://6193477cd3ae6d0017da8485.mockapi.io/users", values)
-<<<<<<< HEAD
                 alert("Submited Successfully");
-                
-=======
-                alert("Submited Successfully")
-               
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
             } catch (error) {
                 console.log(error);
             }
