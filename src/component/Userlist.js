@@ -11,7 +11,7 @@ function Userlist() {
 
 
     useEffect(() => {
-<<<<<<< HEAD
+
 
         const id = setInterval(() => {
             const fetch = async () => {
@@ -28,62 +28,27 @@ function Userlist() {
         }, WAIT_TIME)
         return () => clearInterval(id)
 
-
-
-=======
-        fetchUsers()
-        
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
     }, [])
 
 
 
 
 
-<<<<<<< HEAD
-=======
-    const fetchUsers = () => {
-        const fetch = async () => {
-            try {
-                let userData = await axios.get("https://6193477cd3ae6d0017da8485.mockapi.io/users");
-                setUser(userData.data);
-                
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetch()
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
 
 
-<<<<<<< HEAD
+
+
+
 
 
     const handleDelete = async (id) => {
         try {
             await axios.delete(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${id}`)
-           
-=======
-    const handleDelete = async (id)=> {
-        try {
-            await axios.delete(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${id}`)
-            fetchUsers()
-           
-
-
-
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
         } catch (error) {
             console.log(error);
         }
     }
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
     return (
         <>
 
