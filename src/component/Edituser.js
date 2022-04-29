@@ -22,7 +22,12 @@ function Edituser() {
             try {
                 await axios.put(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`, values)
                 navigate('/');
+<<<<<<< HEAD
 
+=======
+               
+                
+>>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
             } catch (error) {
                 console.log(error);
             }
@@ -35,6 +40,23 @@ function Edituser() {
 
 
     useEffect(() => {
+<<<<<<< HEAD
+=======
+        fetchUsers()
+    }, [])
+    
+    
+    
+    const fetchUsers = () => {
+        const fetch = async () => {
+            try {
+                let userData = await axios.get(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`);
+                formik.setValues(userData.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+>>>>>>> 19234c248f632da1c1f0a8a8919d4a7dee35abe3
         fetch()
     }, [])
         
