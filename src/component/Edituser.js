@@ -7,6 +7,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 function Edituser() {
 
     const params = useParams()
+    const navigate = useNavigate()
+
+    
 
     const formik = useFormik({
         initialValues: {
@@ -19,7 +22,7 @@ function Edituser() {
             try {
                 await axios.put(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`, values)
                 navigate('/');
-                
+
             } catch (error) {
                 console.log(error);
             }
@@ -32,26 +35,22 @@ function Edituser() {
 
 
     useEffect(() => {
-        fetchUsers()
-    }, [])
-
-
-
-    const fetchUsers = () => {
-        const fetch = async () => {
-            try {
-                let userData = await axios.get(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`);
-                formik.setValues(userData.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
         fetch()
-
+    }, [])
+        
+    
+    
+    
+    
+    const fetch = async () => {
+        try {
+            let userData = await axios.get(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${params.id}`);
+            formik.setValues(userData.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
-
-    const navigate  = useNavigate()
-
+    
 
     return (
 

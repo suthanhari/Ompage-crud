@@ -1,9 +1,16 @@
 import axios from 'axios';
-import {useFormik } from 'formik';
+import { useFormik } from 'formik';
 import React from 'react'
 
 
+
 function Createuser() {
+
+
+
+
+
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -11,10 +18,11 @@ function Createuser() {
             parent: "",
             description: ""
         },
-        onSubmit: async values => {
+        onSubmit: async (values) => {
             try {
+
                 await axios.post("https://6193477cd3ae6d0017da8485.mockapi.io/users", values)
-                alert("Submited Successfully")
+                alert("Submited Successfully");
                 
             } catch (error) {
                 console.log(error);
@@ -23,8 +31,8 @@ function Createuser() {
 
     });
 
-   
-    
+
+
 
     return (
         <>
@@ -44,7 +52,7 @@ function Createuser() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="parent" className="form-label">Parent</label>
-                    <select  className="form-select" as="select" name="parent" onChange={formik.handleChange} value={formik.values.parent} >
+                    <select className="form-select" as="select" name="parent" onChange={formik.handleChange} value={formik.values.parent} >
                         <option value="clothes">Clothes</option>
                         <option value="clothes">Clothes</option>
                         <option value="electronics">Electronics</option>
@@ -57,7 +65,7 @@ function Createuser() {
                     <textarea className="form-control" id="description" name='description' rows="3" onChange={formik.handleChange} value={formik.values.description}></textarea>
                 </div>
 
-                <button type="submit"  className="btn btn-primary">Create Category</button>
+                <button type="submit" className="btn btn-primary">Create Category</button>
 
 
             </form>

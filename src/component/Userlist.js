@@ -1,52 +1,52 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function Userlist() {
 
 
     const [user, setUser] = useState([]);
-
+    const WAIT_TIME = 1000;
 
 
     useEffect(() => {
-        fetchUsers()
+
+        const id = setInterval(() => {
+            const fetch = async () => {
+                try {
+                    let userData = await axios.get("https://6193477cd3ae6d0017da8485.mockapi.io/users");
+                    setUser(userData.data);
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            fetch()
+
+        }, WAIT_TIME)
+        return () => clearInterval(id)
+
+
 
     }, [])
 
 
 
 
-    const fetchUsers = () => {
-        const fetch = async () => {
-            try {
-                let userData = await axios.get("https://6193477cd3ae6d0017da8485.mockapi.io/users");
-                setUser(userData.data);
 
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetch()
 
-    }
 
-    const handleDelete = async (id, e) => {
+
+
+    const handleDelete = async (id) => {
         try {
             await axios.delete(`https://6193477cd3ae6d0017da8485.mockapi.io/users/${id}`)
-            
-            // e.preventDefault();
-
-
+           
         } catch (error) {
             console.log(error);
         }
     }
-
-
-   
-
     return (
         <>
 
@@ -104,7 +104,7 @@ function Userlist() {
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" onClick={() => handleDelete(data.id)}>Delete</button>
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => handleDelete(data.id)}>Delete</button>
 
                                                     </div>
                                                 </div>
